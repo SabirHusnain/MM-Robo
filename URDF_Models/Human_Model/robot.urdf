@@ -1,0 +1,26 @@
+<robot name="onshape">
+<link name="army_guy_v3">
+<visual>
+<origin xyz="-0.29019215100544915042 0.0036941907262650480748 -0.0021217202836042478413" rpy="0 -0 0" />
+<geometry>
+<mesh filename="package:///army_guy_v3.stl"/>
+</geometry>
+<material name="army_guy_v3_material">
+<color rgba="0.96470588235294119084 0.96470588235294119084 0.95294117647058818044 1.0"/>
+</material>
+</visual>
+<collision>
+<origin xyz="-0.29019215100544915042 0.0036941907262650480748 -0.0021217202836042478413" rpy="0 -0 0" />
+<geometry>
+<mesh filename="package:///army_guy_v3.stl"/>
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0"/>
+<mass value="0" />
+<inertia ixx="0" ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+
+</robot>

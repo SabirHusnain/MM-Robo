@@ -1,0 +1,74 @@
+#--------------------------- Tool Specifications -------------------------
+#
+# Modify the following macros to reflect the tools you wish to use for
+# compiling and linking your code.
+#
+CC = "C:\Program Files\MATLAB\R2023a\bin\win64\mex.exe" -R2018a
+LD = $(CC)
+ 
+MODEL     = Top_Level_Simulation
+TARGET      = cgxe
+MODULE_SRCS   = m_dnGfh1DX0a11xSfGnyzF5G.c
+MODEL_SRC  = Top_Level_Simulation_cgxe.c
+MODEL_REG = Top_Level_Simulation_cgxe_registry.c
+MAKEFILE    = Top_Level_Simulation_cgxe.gmk
+MATLAB_ROOT  = c:\program files\matlab\r2023a\toolbox\stateflow\stateflow\..\..\..
+BUILDARGS   = 
+#------------------------------ Include/Lib Path ------------------------------
+ 
+USER_INCLUDES = -I"F:\freelancing\Pending\6 dof agricultural robot - matlab\simulation environment\Cache\slprj\_cgxe\top_level_simulation\src" -I"F:\freelancing\Pending\6 dof agricultural robot - matlab\simulation environment" -I"F:\freelancing\Pending\6 dof agricultural robot - matlab\simulation environment\sm_link_models" -I"F:\Freelancing\Pending\6 DOF Agricultural Robot - MATLAB\Simulation Environment\Cache\slprj\_cprj" 
+AUX_INCLUDES = 
+MLSLSF_INCLUDES  = \
+    -I"C:\Program Files\MATLAB\R2023a\extern\include" \
+    -I"C:\Program Files\MATLAB\R2023a\simulink\include" \
+    -I"C:\Program Files\MATLAB\R2023a\rtw\c\src" 
+
+THIRD_PARTY_INCLUDES = -I"F:\Freelancing\Pending\6 DOF Agricultural Robot - MATLAB\Simulation Environment\Cache\slprj\_cgxe\Top_Level_Simulation\src" -I"F:\Freelancing\Pending\6 DOF Agricultural Robot - MATLAB\Simulation Environment\Cache" -I"C:\Program Files\MATLAB\R2023a\extern\include\shared_robotics" -I"C:\Program Files\MATLAB\R2023a\toolbox\shared\robotics\externalDependency\libccd\src" -I"C:\Program Files\MATLAB\R2023a\toolbox\shared\robotics\externalDependency\libccd\src\ccd" 
+
+INCLUDE_PATH = $(USER_INCLUDES) $(AUX_INCLUDES) $(MLSLSF_INCLUDES) $(COMPILER_INCLUDES) $(THIRD_PARTY_INCLUDES)
+ 
+#----------------- Compiler and Linker Options --------------------------------
+ 
+# Optimization Options
+ 
+CC_OPTS =  -w -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -Dccd_EXPORTS
+CPP_REQ_DEFINES = -DMATLAB_MEX_FILE
+ 
+# Uncomment this line to move warning level to W4
+# cflags = $(cflags:W3=W4)
+CFLAGS = $(CPP_REQ_DEFINES) $(INCLUDE_PATH) CFLAGS="$$CFLAGS $(CC_OPTS)"
+ 
+LDFLAGS = 
+ 
+AUXLDFLAGS = 
+#----------------------------- Source Files -----------------------------------
+ 
+THIRD_PARTY_SRCS = c:/PROGRA~1/matlab/r2023a/toolbox/shared/robotics/EXTERN~1/libccd/src/ccd_ccd.c c:/PROGRA~1/matlab/r2023a/toolbox/shared/robotics/EXTERN~1/libccd/src/ccd_mpr.c c:/PROGRA~1/matlab/r2023a/toolbox/shared/robotics/EXTERN~1/libccd/src/ccd_polytope.c c:/PROGRA~1/matlab/r2023a/toolbox/shared/robotics/EXTERN~1/libccd/src/ccd_vec3.c c:/PROGRA~1/matlab/r2023a/toolbox/shared/robotics/ROBOTC~1/builtins/libsrc/COLLIS~1/collisioncodegen_CollisionGeometry.cpp c:/PROGRA~1/matlab/r2023a/toolbox/shared/robotics/ROBOTC~1/builtins/libsrc/COLLIS~1/collisioncodegen_api.cpp c:/PROGRA~1/matlab/r2023a/toolbox/shared/robotics/ROBOTC~1/builtins/libsrc/COLLIS~1/collisioncodegen_ccdExtensions.cpp c:/PROGRA~1/matlab/r2023a/toolbox/shared/robotics/ROBOTC~1/builtins/libsrc/COLLIS~1/collisioncodegen_checkCollision.cpp  
+REQ_SRCS  = $(MODEL_SRC) $(MODEL_REG) $(MODULE_SRCS) $(THIRD_PARTY_SRCS) 
+
+USER_OBJS =
+
+AUX_ABS_OBJS =
+
+REQ_OBJS = $(REQ_SRCS:.cpp=.obj)
+REQ_OBJS2 = $(REQ_OBJS:.c=.obj)
+OBJS = $(REQ_OBJS2) $(USER_OBJS) $(AUX_ABS_OBJS) $(THIRD_PARTY_OBJS)
+OBJLIST_FILE = Top_Level_Simulation_cgxe.mol
+SFCLIB = 
+AUX_LNK_OBJS = 
+USER_LIBS = 
+PARLIB = 
+ 
+#--------------------------------- Rules --------------------------------------
+ 
+MEX_FILE_NAME = $(MODEL)_$(TARGET).mexw64
+ 
+ $(MEX_FILE_NAME): $(MAKEFILE) $(OBJS) $(SFCLIB) $(AUX_LNK_OBJS)
+	@echo ### Linking ...
+	$(LD) -silent LD="$$MINGWROOT\bin\g++" LDFLAGS="$$LDFLAGS $(LDFLAGS) $(AUXLDFLAGS)" -output $(MEX_FILE_NAME) @$(OBJLIST_FILE) $(USER_LIBS) $(SFCLIB) $(PARLIB) $(IPPLIB) $(THIRD_PARTY_LIBS) 
+%.obj :    %.c
+	$(CC) -c $(CFLAGS) $<
+
+%.obj :    %.cpp
+	$(CC) -c $(CFLAGS) $<
+
